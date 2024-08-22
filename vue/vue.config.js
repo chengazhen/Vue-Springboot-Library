@@ -1,3 +1,5 @@
+const path = require('path');
+
 // 跨域配置
 module.exports = {
     devServer: {                //记住，别写错了devServer//设置本地默认端口  选填
@@ -11,5 +13,6 @@ module.exports = {
                 }
             }
         }
-    }
+    },
+    outputDir: path.resolve(__dirname, '../SpringBoot/src/main/resources/static'),
 }

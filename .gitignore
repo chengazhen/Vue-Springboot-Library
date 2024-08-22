@@ -31,3 +31,5 @@ gen/
 
 # Mobile Tools for Java (J2ME)
 .mtj.tmp/
+
+vue/dist
