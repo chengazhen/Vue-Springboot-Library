@@ -10,6 +10,8 @@
 
 第三步：浏览器访问`localhost:9090`，测试账号需要自己插入到数据库中
 
+## 文档地址
+http://localhost:9090/swagger-ui/index.html
 
 
 ## 主要技术
