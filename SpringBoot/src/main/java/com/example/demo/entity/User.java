@@ -5,8 +5,11 @@ import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 import lombok.Data;
+
 import org.apache.ibatis.annotations.Update;
 
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 import java.util.Map;
 
 @TableName("user")
@@ -14,8 +17,10 @@ import java.util.Map;
 public class User {
     @TableId (type = IdType.AUTO)
     private Integer id;
+    @NotEmpty(message = "用户名不为空")
     private String username;
     private String nickName;
+    @NotEmpty(message = "密码不为空")
     private String password;
     private String sex;
     private String address;

@@ -13,11 +13,13 @@ import com.example.demo.entity.User;
 import com.example.demo.mapper.UserMapper;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.jdbc.Null;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import com.example.demo.utils.TokenUtils;
 
 
 import javax.annotation.Resource;
+import javax.validation.Valid;
 import java.util.List;
 import java.util.Map;
 
@@ -39,7 +41,7 @@ public class UserController {
     }
     @CrossOrigin
     @PostMapping("/login")
-    public Result<?> login(@RequestBody User user){
+    public Result<?> login(@RequestBody @Valid User user){
         User res = userMapper.selectOne(Wrappers.<User>lambdaQuery().eq(User::getUsername,user.getUsername()).eq(User::getPassword,user.getPassword()));
         if(res == null)
         {
