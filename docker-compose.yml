@@ -1,0 +1,28 @@
+version: '3.8'
+
+services:
+  app:
+    image: ccz2/my-spring-boot-app:v1.0.0
+    container_name: springboot_app
+    ports:
+      - "9090:9090"
+    depends_on:
+      - db
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:mysql://db:3306/booksystem?useUnicode=true&characterEncoding=utf-8&allowMultiQueries=true&useSSL=false&serverTimezone=GMT%2b8
+      SPRING_DATASOURCE_USERNAME: root
+      SPRING_DATASOURCE_PASSWORD: admin1234
+
+  db:
+    image: mysql:8.0
+    container_name: mysql_db
+    environment:
+      MYSQL_ROOT_PASSWORD: admin1234
+      MYSQL_DATABASE: springboot-vue
+    ports:
+      - "3306:3306"
+    volumes:
+      - db_data:/var/lib/mysql
+
+volumes:
+  db_data:
