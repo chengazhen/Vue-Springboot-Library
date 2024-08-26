@@ -4,12 +4,14 @@ import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.core.toolkit.StringUtils;
 import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.example.demo.dto.MenuRequest;
 import com.example.demo.entity.Menu;
 import com.example.demo.mapper.MenuMapper;
 import org.springframework.web.bind.annotation.*;
 import com.example.demo.commom.Result;
 
 import javax.annotation.Resource;
+import javax.validation.Valid;
 
 @RestController
 @RequestMapping("/menu")
@@ -21,7 +23,7 @@ public class MenuController {
     public Result<?> list(@RequestParam(defaultValue = "1") Integer pageNum,
                          @RequestParam(defaultValue = "10") Integer pageSize,
                          @RequestParam(defaultValue = "") String search){
-        LambdaQueryWrapper<Menu> wrappers = Wrappers.<Menu>lambdaQuery();
+        LambdaQueryWrapper<Menu> wrappers = Wrappers.lambdaQuery();
         if(StringUtils.isNotBlank(search)){
             wrappers.like(Menu::getName,search);
         }
@@ -33,4 +35,18 @@ public class MenuController {
             return Result.error("-1","查询失败");
         }
     }
+
+    @PostMapping("/create")
+    public Result<?> create(@RequestBody @Valid MenuRequest menu){
+        Menu newMenu = new Menu();
+        newMenu.setName(menu.getName());
+        newMenu.setPath(menu.getPath());
+        newMenu.setComponent(menu.getComponent());
+        newMenu.setIcon(menu.getIcon());
+        newMenu.setPid(menu.getPid());
+        newMenu.setSort(menu.getSort());
+        MenuMapper.insert(newMenu);
+        return Result.success(true);
+    }
+
 }

@@ -12,7 +12,9 @@ public class Menu {
     @TableId (type = IdType.AUTO)
     private Integer id;
     private String name;
+    private String component;
     private String path;
     private String icon;
     private Integer pid;
+    private Integer sort;
 }
