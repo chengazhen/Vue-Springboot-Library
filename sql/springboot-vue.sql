@@ -162,3 +162,18 @@ INSERT INTO `user` VALUES (16, '12345', '12345', '苏梦宇', '13213232989', '�
 INSERT INTO `user` VALUES (17, '苏格瑜', 'sugeyu', NULL, NULL, NULL, NULL, 2);
 
 SET FOREIGN_KEY_CHECKS = 1;
+
+
+# 菜单
+CREATE Table `menu`(
+  `id` bigint(0) NOT NULL AUTO_INCREMENT COMMENT 'ID',
+  `name` varchar(255)  NOT NULL COMMENT '名称',
+  `path` varchar(255)  NOT NULL COMMENT '路径',
+  `component` varchar(255)  NOT NULL COMMENT '组件',
+  `icon` varchar(255)  NOT NULL COMMENT '图标',
+  `order_num` int(0) NOT NULL COMMENT '排序',
+  `parent_id` bigint(0) NOT NULL COMMENT '父id',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+
