@@ -13,6 +13,8 @@
 ## 文档地址
 http://localhost:9090/swagger-ui/index.html
 
+线上地址
+http://49.234.181.38:9090/swagger-ui/index.html
 
 ## 主要技术
 
