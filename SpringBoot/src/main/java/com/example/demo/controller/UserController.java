@@ -26,6 +26,7 @@ import java.util.Map;
 
 @RestController
 @RequestMapping("/user")
+@Validated
 public class UserController {
     @Resource
     UserMapper userMapper;
