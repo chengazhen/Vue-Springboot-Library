@@ -4,7 +4,8 @@ import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.core.toolkit.StringUtils;
 import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
-import com.example.demo.dto.MenuRequest;
+import com.example.demo.dto.MenuCreate;
+import com.example.demo.dto.MenuUpdate;
 import com.example.demo.entity.Menu;
 import com.example.demo.mapper.MenuMapper;
 import org.springframework.web.bind.annotation.*;
@@ -37,7 +38,7 @@ public class MenuController {
     }
 
     @PostMapping("/create")
-    public Result<?> create(@RequestBody @Valid MenuRequest menu){
+    public Result<?> create(@RequestBody @Valid MenuCreate menu){
         Menu newMenu = new Menu();
         newMenu.setName(menu.getName());
         newMenu.setPath(menu.getPath());
@@ -48,5 +49,26 @@ public class MenuController {
         MenuMapper.insert(newMenu);
         return Result.success(true);
     }
+
+    @DeleteMapping("/{id}")
+    public Result<?> delete(@PathVariable Long id){
+        MenuMapper.deleteById(id);
+        return Result.success(true);
+    }
+
+
+    @PostMapping
+    public Result<?> update(@RequestBody @Valid MenuUpdate menu){
+        Menu newMenu = new Menu();
+        newMenu.setId(menu.getId());
+        newMenu.setName(menu.getName());
+        newMenu.setPath(menu.getPath());
+        newMenu.setComponent(menu.getComponent());
+        newMenu.setIcon(menu.getIcon());
+        newMenu.setSort(menu.getSort());
+        MenuMapper.updateById(newMenu);
+        return Result.success(true);
+    }
+
 
 }

@@ -5,7 +5,7 @@ import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 
 @Data
-public class MenuRequest {
+public class MenuCreate {
     @NotBlank(message = "name 不能为空")
     private String name;
     @NotBlank(message = "path 不能为空")
@@ -13,7 +13,7 @@ public class MenuRequest {
     private String component;
     private String icon;
     @NotNull(message = "pid 不能为空")
-    private Integer pid;
+    private Long pid;
     @NotNull(message = "sort 不能为空")
     private Integer sort;
 }
