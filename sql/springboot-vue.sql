@@ -177,12 +177,13 @@ CREATE Table `menu`(
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 # 角色
+DROP TABLE IF EXISTS `role`;
 CREATE Table `role`(
   `id` bigint(0) NOT NULL AUTO_INCREMENT COMMENT 'ID',
   `name` varchar(255)  NOT NULL COMMENT '名称',
   `description` varchar(255)  NOT NULL COMMENT '描述',
-  `create_time` datetime(0) NOT NULL COMMENT '创建时间',
-  `update_time` datetime(0) NOT NULL COMMENT '更新时间',
+  `create_time` datetime(0) NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
+  `update_time` datetime(0) NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '更新时间',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci COMMENT '角色';
 
