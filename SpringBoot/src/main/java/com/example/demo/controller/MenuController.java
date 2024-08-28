@@ -50,14 +50,14 @@ public class MenuController {
         return Result.success(true);
     }
 
-    @DeleteMapping("/{id}")
+    @DeleteMapping("/delete/{id}")
     public Result<?> delete(@PathVariable Long id){
         MenuMapper.deleteById(id);
         return Result.success(true);
     }
 
 
-    @PostMapping
+    @PostMapping("/update")
     public Result<?> update(@RequestBody @Valid MenuUpdate menu){
         Menu newMenu = new Menu();
         newMenu.setId(menu.getId());

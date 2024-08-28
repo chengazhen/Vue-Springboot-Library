@@ -176,4 +176,28 @@ CREATE Table `menu`(
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
+# 角色
+CREATE Table `role`(
+  `id` bigint(0) NOT NULL AUTO_INCREMENT COMMENT 'ID',
+  `name` varchar(255)  NOT NULL COMMENT '名称',
+  `description` varchar(255)  NOT NULL COMMENT '描述',
+  `create_time` datetime(0) NOT NULL COMMENT '创建时间',
+  `update_time` datetime(0) NOT NULL COMMENT '更新时间',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci COMMENT '角色';
 
+# 角色菜单
+CREATE Table `role_menu`(
+  `id` bigint(0) NOT NULL AUTO_INCREMENT COMMENT 'ID',
+  `role_id` bigint(0) NOT NULL COMMENT '角色id',
+  `menu_id` bigint(0) NOT NULL COMMENT '菜单id',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci COMMENT '角色菜单';
+
+# 用户角色
+CREATE Table `user_role`(
+  `id` bigint(0) NOT NULL AUTO_INCREMENT COMMENT 'ID',
+  `user_id` bigint(0) NOT NULL COMMENT '用户id',
+  `role_id` bigint(0) NOT NULL COMMENT '角色id',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci COMMENT '用户角色';
