@@ -12,7 +12,7 @@ import java.util.Date;
 @Data
 public class Role {
     @TableId (type = IdType.AUTO)
-    private Integer id;
+    private Long id;
     private String name;
     private String description;
     @JsonFormat(locale="zh",timezone="GMT+8", pattern="yyyy-MM-dd HH:mm:ss")
