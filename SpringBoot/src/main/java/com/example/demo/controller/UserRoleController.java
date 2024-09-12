@@ -2,6 +2,7 @@ package com.example.demo.controller;
 
 import com.example.demo.commom.Result;
 import com.example.demo.dto.UserRoleCreate;
+import com.example.demo.dto.UserRoleUpdate;
 import com.example.demo.entity.UserRole;
 import com.example.demo.mapper.RoleMapper;
 import com.example.demo.mapper.UserRoleMapper;
@@ -39,7 +40,15 @@ public class UserRoleController {
     }
 
     @PostMapping("/update")
-    public Result<?> update() {
+    public Result<?> update(@RequestBody @Valid UserRoleUpdate userRole) {
+        Long[] roleIds = userRole.getRoleIds();
+        for (Long roleId : roleIds) {
+            UserRole newRole = new UserRole();
+            newRole.setUserId(userRole.getUserId());
+            newRole.setRoleId(roleId);
+            UserRoleMapper.insert(newRole);
+        }
+
         return Result.success(true);
     }
 
