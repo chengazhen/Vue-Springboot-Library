@@ -6,12 +6,16 @@ import com.example.demo.dto.UserRoleUpdate;
 import com.example.demo.entity.UserRole;
 import com.example.demo.mapper.RoleMapper;
 import com.example.demo.mapper.UserRoleMapper;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
 import javax.validation.Valid;
+import java.lang.reflect.Array;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/userRole")
@@ -19,6 +23,9 @@ public class UserRoleController {
 
     @Resource
     UserRoleMapper UserRoleMapper;
+    @Autowired
+    private UserRoleMapper userRoleMapper;
+
     @PostMapping("/create")
     public Result<?> create(@RequestBody @Valid UserRoleCreate userRole) {
         Long[] roleIds = userRole.getRoleIds();
@@ -42,12 +49,14 @@ public class UserRoleController {
     @PostMapping("/update")
     public Result<?> update(@RequestBody @Valid UserRoleUpdate userRole) {
         Long[] roleIds = userRole.getRoleIds();
-        for (Long roleId : roleIds) {
+        List<UserRole> newRoles = Arrays.stream(roleIds).map(roleId -> {
             UserRole newRole = new UserRole();
             newRole.setUserId(userRole.getUserId());
             newRole.setRoleId(roleId);
-            UserRoleMapper.insert(newRole);
-        }
+            return newRole;
+        }).collect(Collectors.toList());
+
+        UserRoleMapper.batchInsert(newRoles);
 
         return Result.success(true);
     }
