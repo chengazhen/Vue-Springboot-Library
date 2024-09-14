@@ -9,6 +9,7 @@ import com.example.demo.dto.RoleCreate;
 import com.example.demo.dto.RoleUpdate;
 import com.example.demo.entity.Role;
 import com.example.demo.mapper.RoleMapper;
+import com.example.demo.mapper.UserMapper;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
@@ -65,6 +66,7 @@ public class RoleController {
             Role newRole = new Role();
             newRole.setName(role.getName());
             newRole.setDescription(role.getDescription());
+            RoleMapper.insert(newRole);
             return Result.success(true);
         } catch (Exception e) {
             return Result.error("500", e.getMessage());

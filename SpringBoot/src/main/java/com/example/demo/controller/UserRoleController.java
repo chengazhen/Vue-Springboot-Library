@@ -1,5 +1,6 @@
 package com.example.demo.controller;
 
+import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 import com.example.demo.commom.Result;
 import com.example.demo.dto.UserRoleCreate;
 import com.example.demo.dto.UserRoleUpdate;
@@ -22,27 +23,28 @@ import java.util.stream.Collectors;
 public class UserRoleController {
 
     @Resource
-    UserRoleMapper UserRoleMapper;
-    @Autowired
-    private UserRoleMapper userRoleMapper;
+    UserRoleMapper userRoleMapper;
 
     @PostMapping("/create")
     public Result<?> create(@RequestBody @Valid UserRoleCreate userRole) {
-        Long[] roleIds = userRole.getRoleIds();
+        Long userId = userRole.getUserId();
+        userRoleMapper.delete(Wrappers.<UserRole>lambdaQuery().eq(UserRole::getUserId, userId));
 
+        Long[] roleIds = userRole.getRoleIds();
         List<UserRole> newRoles = new ArrayList<>();
         for (Long roleId : roleIds) {
             UserRole newRole = new UserRole();
-            newRole.setUserId(userRole.getUserId());
+            newRole.setUserId(userId);
             newRole.setRoleId(roleId);
             newRoles.add(newRole);
         }
-        UserRoleMapper.batchInsert(newRoles);
+        userRoleMapper.batchInsert(newRoles);
         return Result.success(true);
     }
 
     @PostMapping("/{id}")
-    public Result<?> delete() {
+    public Result<?> delete(@PathVariable Long id) {
+        userRoleMapper.deleteById(id);
         return Result.success(true);
     }
 
@@ -56,13 +58,9 @@ public class UserRoleController {
             return newRole;
         }).collect(Collectors.toList());
 
-        UserRoleMapper.batchInsert(newRoles);
+        userRoleMapper.batchInsert(newRoles);
 
         return Result.success(true);
     }
 
-    @PostMapping("/list")
-    public Result<?> query() {
-        return Result.success(true);
-    }
 }

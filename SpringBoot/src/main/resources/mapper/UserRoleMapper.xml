@@ -1,0 +1,10 @@
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.demo.mapper.UserRoleMapper">
+    <insert id="batchInsert">
+        insert into user_role (user_id, role_id)
+        values
+        <foreach collection="list" item="role" separator=",">
+            (#{role.userId}, #{role.roleId})
+        </foreach>
+    </insert>
+</mapper>
