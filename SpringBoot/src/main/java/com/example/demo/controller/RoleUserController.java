@@ -1,6 +1,6 @@
 package com.example.demo.controller;
 
-import com.example.demo.service.SysRoleService;
+import com.example.demo.service.impl.SysRoleServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -12,7 +12,7 @@ import com.example.demo.commom.Result;
 public class RoleUserController {
 
     @Autowired
-    private SysRoleService sysRoleService;
+    private SysRoleServiceImpl sysRoleService;
 
     /**
      * 为用户分配角色

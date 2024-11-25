@@ -5,9 +5,7 @@ import com.example.demo.commom.Result;
 import com.example.demo.dto.UserRoleCreate;
 import com.example.demo.dto.UserRoleUpdate;
 import com.example.demo.entity.UserRole;
-import com.example.demo.mapper.RoleMapper;
 import com.example.demo.mapper.UserRoleMapper;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
