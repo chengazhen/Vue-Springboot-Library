@@ -1,8 +1,8 @@
 package com.example.demo.controller;
 
-import com.example.demo.commom.Result;
+import com.example.demo.common.Result;
 import com.example.demo.entity.SysRole;
-import com.example.demo.service.SysRoleService;
+import com.example.demo.service.impl.SysRoleServiceImpl;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
@@ -13,7 +13,7 @@ import java.util.List;
 public class SysRoleController {
     
     @Resource
-    private SysRoleService roleService;
+    private SysRoleServiceImpl roleService;
     
     @GetMapping("/list")
     public Result list(SysRole role) {
