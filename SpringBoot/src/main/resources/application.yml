@@ -3,9 +3,9 @@ server:
 spring:
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: ${MYSQL_URL:jdbc:mysql://49.234.181.38:3306/booksystem?useUnicode=true&characterEncoding=utf-8&allowMultiQueries=true&useSSL=false&serverTimezone=GMT%2b8}
+    url: ${MYSQL_URL:jdbc:mysql://49.234.181.38:3306/springboot-vue?useUnicode=true&characterEncoding=utf-8&allowMultiQueries=true&useSSL=false&serverTimezone=GMT%2b8}
     username: ${MYSQL_USER:root}
-    password: ${MYSQL_PASSWORD:admin1234}
+    password: ${MYSQL_PASSWORD:mysql_ec7ptz}
   mvc:
     pathmatch:
       matching-strategy: ant-path-matcher
