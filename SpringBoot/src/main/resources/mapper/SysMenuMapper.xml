@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.demo.mapper.SysMenuMapper">
+
+    <select id="selectMenuList" parameterType="SysMenu" resultType="SysMenu">
+        select * from sys_menu
+        <where>
+            <if test="menuName != null and menuName != ''">
+                AND menu_name like concat('%', #{menuName}, '%')
+            </if>
+            <if test="visible != null and visible != ''">
+                AND visible = #{visible}
+            </if>
+        </where>
+        order by parent_id, order_num
+    </select>
+    
+    <select id="selectMenuById" parameterType="Long" resultType="SysMenu">
+        select * from sys_menu where menu_id = #{menuId}
+    </select>
+    
+    <insert id="insertMenu" parameterType="SysMenu">
+        insert into sys_menu (
+            menu_name, parent_id, order_num, url, target, menu_type,
+            visible, is_refresh, perms, icon, create_by, create_time, remark
+        ) values (
+            #{menuName}, #{parentId}, #{orderNum}, #{url}, #{target}, #{menuType},
+            #{visible}, #{isRefresh}, #{perms}, #{icon}, #{createBy}, sysdate(), #{remark}
+        )
+    </insert>
+    
+    <update id="updateMenu" parameterType="SysMenu">
+        update sys_menu
+        <set>
+            <if test="menuName != null">menu_name = #{menuName},</if>
+            <if test="parentId != null">parent_id = #{parentId},</if>
+            <if test="orderNum != null">order_num = #{orderNum},</if>
+            <if test="url != null">url = #{url},</if>
+            <if test="target != null">target = #{target},</if>
+            <if test="menuType != null">menu_type = #{menuType},</if>
+            <if test="visible != null">visible = #{visible},</if>
+            <if test="isRefresh != null">is_refresh = #{isRefresh},</if>
+            <if test="perms != null">perms = #{perms},</if>
+            <if test="icon != null">icon = #{icon},</if>
+            <if test="remark != null">remark = #{remark},</if>
+            update_by = #{updateBy},
+            update_time = sysdate()
+        </set>
+        where menu_id = #{menuId}
+    </update>
+    
+    <delete id="deleteMenuById" parameterType="Long">
+        delete from sys_menu where menu_id = #{menuId}
+    </delete>
+    
+    <select id="selectMenusByUserId" parameterType="Long" resultType="SysMenu">
+        select distinct m.* 
+        from sys_menu m
+        left join sys_role_menu rm on m.menu_id = rm.menu_id
+        left join sys_user_role ur on rm.role_id = ur.role_id
+        where ur.user_id = #{userId}
+        order by m.parent_id, m.order_num
+    </select>
+</mapper> 
