@@ -10,7 +10,6 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
 import javax.validation.Valid;
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -55,9 +54,7 @@ public class UserRoleController {
             newRole.setRoleId(roleId);
             return newRole;
         }).collect(Collectors.toList());
-
         userRoleMapper.batchInsert(newRoles);
-
         return Result.success(true);
     }
 
