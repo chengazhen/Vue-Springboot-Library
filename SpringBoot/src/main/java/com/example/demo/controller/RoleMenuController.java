@@ -3,7 +3,7 @@ package com.example.demo.controller;
 import com.example.demo.commom.Result;
 import com.example.demo.entity.Menu;
 import com.example.demo.entity.Role;
-import com.example.demo.service.RoleMenuService;
+import com.example.demo.service.impl.RoleMenuServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -14,7 +14,7 @@ import java.util.List;
 public class RoleMenuController {
 
     @Autowired
-    private RoleMenuService roleMenuService;
+    private RoleMenuServiceImpl roleMenuService;
 
     /**
      * 为角色分配菜单权限
