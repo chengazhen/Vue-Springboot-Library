@@ -1,5 +1,6 @@
 package com.example.demo.service;
 
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.example.demo.entity.Role;
 import com.example.demo.entity.User;
 import com.example.demo.entity.Menu;
@@ -61,4 +62,24 @@ public interface SysRoleService {
      * @return 角色列表
      */
     List<Role> getMenuRoles(Long menuId);
+
+    /**
+     * 分页查询角色列表
+     */
+    Page<Role> list(Integer pageNum, Integer pageSize, String name);
+
+    /**
+     * 删除角色
+     */
+    boolean delete(Long id);
+
+    /**
+     * 更新角色
+     */
+    boolean update(Role role);
+
+    /**
+     * 创建角色
+     */
+    boolean create(Role role);
 } 

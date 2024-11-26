@@ -6,7 +6,7 @@ import com.baomidou.mybatisplus.annotation.TableName;
 import lombok.Data;
 
 @Data
-@TableName("role_menu")
+@TableName("sys_role_menu")
 public class RoleMenu {
     
     @TableId(type = IdType.AUTO)

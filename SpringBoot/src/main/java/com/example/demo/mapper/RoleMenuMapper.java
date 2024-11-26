@@ -2,6 +2,8 @@ package com.example.demo.mapper;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.example.demo.entity.RoleMenu;
+import com.example.demo.entity.Menu;
+import com.example.demo.entity.Role;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
@@ -34,4 +36,7 @@ public interface RoleMenuMapper extends BaseMapper<RoleMenu> {
      * 查询菜单的角色ID列表
      */
     List<Long> selectRoleIdsByMenuId(@Param("menuId") Long menuId);
+    
+    List<Menu> selectMenusByRoleId(Long roleId);
+    List<Role> selectRolesByMenuId(Long menuId);
 }
