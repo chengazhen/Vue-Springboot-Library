@@ -1,0 +1,26 @@
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.demo.mapper.UserRoleMapper">
+    <insert id="batchInsert">
+        insert into user_role (user_id, role_id)
+        values
+        <foreach collection="list" item="role" separator=",">
+            (#{role.userId}, #{role.roleId})
+        </foreach>
+    </insert>
+
+    <select id="selectRolesByUserId" resultType="com.example.demo.entity.Role">
+        select * from role where id in (select role_id from user_role where user_id = #{userId})
+    </select>
+
+    <select id="selectUsersByRoleId" resultType="com.example.demo.entity.User">
+        select * from user where id in (select user_id from user_role where role_id = #{roleId})
+    </select>
+
+    <delete id="delete">
+        delete from user_role where user_id = #{userId} and role_id = #{roleId}
+    </delete>
+
+    <insert id="insert">
+        insert into user_role (user_id, role_id) values (#{userId}, #{roleId})
+    </insert>
+</mapper>

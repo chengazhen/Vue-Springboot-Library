@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.demo.mapper.RoleMenuMapper">
+
+    <!-- 批量插入角色-菜单关联记录 -->
+    <insert id="insertBatch">
+        INSERT INTO role_menu (role_id, menu_id)
+        VALUES
+        <foreach collection="roleMenus" item="item" separator=",">
+            (#{item.roleId}, #{item.menuId})
+        </foreach>
+    </insert>
+
+    <!-- 根据角色ID删除关联记录 -->
+    <delete id="deleteByRoleId">
+        DELETE FROM role_menu
+        WHERE role_id = #{roleId}
+    </delete>
+
+    <!-- 根据菜单ID删除关联记录 -->
+    <delete id="deleteByMenuId">
+        DELETE FROM role_menu
+        WHERE menu_id = #{menuId}
+    </delete>
+
+    <!-- 查询角色的菜单ID列表 -->
+    <select id="selectMenuIdsByRoleId" resultType="java.lang.Long">
+        SELECT menu_id
+        FROM role_menu
+        WHERE role_id = #{roleId}
+    </select>
+
+    <!-- 查询菜单的角色ID列表 -->
+    <select id="selectRoleIdsByMenuId" resultType="java.lang.Long">
+        SELECT role_id
+        FROM role_menu
+        WHERE menu_id = #{menuId}
+    </select>
+
+    <select id="selectMenusByRoleId" resultType="com.example.demo.entity.Menu">
+        SELECT m.* FROM sys_menu m
+        INNER JOIN sys_role_menu rm ON m.id = rm.menu_id
+        WHERE rm.role_id = #{roleId}
+    </select>
+
+    <select id="selectRolesByMenuId" resultType="com.example.demo.entity.Role">
+        SELECT r.* FROM sys_role r
+        INNER JOIN sys_role_menu rm ON r.id = rm.role_id
+        WHERE rm.menu_id = #{menuId}
+    </select>
+
+</mapper>

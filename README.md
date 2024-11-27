@@ -1,12 +1,18 @@
 # 图书馆管理系统（library-system）
 
 
+## 待办
+[ ] 重新部署线上服务
+[ ] 后端增加权限管理
+[ ] 使用vben admin 5.0 重构前端
+
+
 
 ## 本地快捷预览项目
 
 第一步：运行 sql 文件夹下的`springboot-vue.sql`，创建`springboot-vue`数据库
 
-第二步：双击 run 文件夹下的`start.cmd`，弹出的dos窗口不要关闭
+第二步：双击 run 文件夹下的`start.cmd`，弹出的dos窗口不要关闭；（如果有问题，请自行启动SpringBoot项目）
 
 第三步：浏览器访问`localhost:9090`，测试账号需要自己插入到数据库中
 
@@ -14,7 +20,7 @@
 http://localhost:9090/swagger-ui/index.html
 
 线上地址
-http://49.234.181.38:9090/swagger-ui/index.html
+<!-- http://49.234.181.38:9090/swagger-ui/index.html --> 线上服务已经关闭，后续会重新部署
 
 ## 主要技术
 
