@@ -88,9 +88,8 @@ public class UserController {
                               @RequestParam(defaultValue = "") String search){
         LambdaQueryWrapper<User> wrappers = Wrappers.<User>lambdaQuery();
         if(StringUtils.isNotBlank(search)){
-            wrappers.like(User::getNickName,search);
+            wrappers.like(User::getUsername,search);
         }
-        wrappers.like(User::getRole,2);
         Page<User> userPage =userMapper.selectPage(new Page<>(pageNum,pageSize), wrappers);
         return Result.success(userPage);
     }
