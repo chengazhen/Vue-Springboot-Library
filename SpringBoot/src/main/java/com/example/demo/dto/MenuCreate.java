@@ -16,4 +16,5 @@ public class MenuCreate {
     private Long pid;
     @NotNull(message = "sort 不能为空")
     private Integer sort;
+    private String title;   
 }

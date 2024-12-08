@@ -74,6 +74,7 @@ public class MenuController {
         newMenu.setIcon(menu.getIcon());
         newMenu.setPid(menu.getPid());
         newMenu.setSort(menu.getSort());
+        newMenu.setTitle(menu.getTitle());
         MenuMapper.insert(newMenu);
         return Result.success(true);
     }
