@@ -38,6 +38,9 @@ public class RoleMenuServiceImpl implements RoleMenuService {
             throw new RuntimeException("角色不存在");
         }
 
+        // 先删除角色原有的菜单
+        roleMenuMapper.deleteByRoleId(roleId);
+
         // 检查菜单是否都存在
         for (Long menuId : menuIds) {
             Menu menu = menuMapper.selectById(menuId);
@@ -100,6 +103,11 @@ public class RoleMenuServiceImpl implements RoleMenuService {
                 .collect(Collectors.toList());
 
         return menuMapper.selectBatchIds(menuIds);
+    }
+
+    @Override
+    public List<Long> getRoleMenuIds(Long roleId) {
+        return roleMenuMapper.selectMenuIdsByRoleId(roleId);
     }
 
     @Override

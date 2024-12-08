@@ -38,14 +38,14 @@
     </select>
 
     <select id="selectMenusByRoleId" resultType="com.example.demo.entity.Menu">
-        SELECT m.* FROM sys_menu m
-        INNER JOIN sys_role_menu rm ON m.id = rm.menu_id
+        SELECT m.* FROM menu m
+        INNER JOIN role_menu rm ON m.id = rm.menu_id
         WHERE rm.role_id = #{roleId}
     </select>
 
     <select id="selectRolesByMenuId" resultType="com.example.demo.entity.Role">
-        SELECT r.* FROM sys_role r
-        INNER JOIN sys_role_menu rm ON r.id = rm.role_id
+        SELECT r.* FROM role r
+        INNER JOIN role_menu rm ON r.id = rm.role_id
         WHERE rm.menu_id = #{menuId}
     </select>
 

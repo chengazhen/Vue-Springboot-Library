@@ -6,6 +6,7 @@ import com.example.demo.entity.Menu;
 import com.example.demo.entity.Role;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
+import org.apache.ibatis.annotations.Select;
 
 import java.util.List;
 
@@ -39,4 +40,11 @@ public interface RoleMenuMapper extends BaseMapper<RoleMenu> {
     
     List<Menu> selectMenusByRoleId(Long roleId);
     List<Role> selectRolesByMenuId(Long menuId);
+
+    @Select("SELECT m.* FROM menu m " +
+            "LEFT JOIN role_menu rm ON m.id = rm.menu_id " +
+            "WHERE rm.role_id = #{roleId} " +
+            "ORDER BY m.sort")
+    List<Menu> getMenusByRoleId(@Param("roleId") Long roleId);
+
 }

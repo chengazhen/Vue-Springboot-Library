@@ -6,17 +6,13 @@ import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 import lombok.Data;
 
-import org.apache.ibatis.annotations.Update;
-
 import javax.validation.constraints.NotEmpty;
-import javax.validation.constraints.NotNull;
-import java.util.Map;
 
 @TableName("user")
 @Data
 public class User {
     @TableId (type = IdType.AUTO)
-    private Integer id;
+    private Long id;
     @NotEmpty(message = "用户名不为空")
     private String username;
     private String nickName;

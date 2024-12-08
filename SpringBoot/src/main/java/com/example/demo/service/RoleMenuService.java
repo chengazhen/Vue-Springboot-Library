@@ -28,6 +28,13 @@ public interface RoleMenuService {
     List<Menu> getRoleMenus(Long roleId);
 
     /**
+     * 获取角色的菜单ID列表
+     * @param roleId 角色ID
+     * @return 菜单ID列表
+     */
+    List<Long> getRoleMenuIds(Long roleId);
+
+    /**
      * 获取具有特定菜单权限的角色列表
      * @param menuId 菜单ID
      * @return 角色列表

@@ -17,4 +17,5 @@ public class Menu {
     private String icon;
     private Long pid;
     private Integer sort;
+    private String title;
 }

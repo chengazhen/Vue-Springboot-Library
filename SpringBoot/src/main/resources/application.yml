@@ -21,5 +21,9 @@ mybatis-plus:
     log-impl: org.apache.ibatis.logging.stdout.StdOutImpl  # 开发环境打印SQL语句
 debug: true
 
+jwt:
+  secret: '1234567890'
+  expiration: 86400000  # 24小时
+
 
 

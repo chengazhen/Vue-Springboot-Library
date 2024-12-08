@@ -37,14 +37,15 @@ public class SysRoleServiceImpl implements SysRoleService {
         if (user == null) {
             throw new RuntimeException("用户不存在");
         }
+
+        // 先清空用户的所有角色
+        userRoleMapper.deleteByUserId(userId);
         
         Arrays.stream(roleIds).forEach(roleId -> {
             if (roleMapper.selectById(roleId) == null) {
                 throw new RuntimeException("角色ID " + roleId + " 不存在");
             }
-            if (!userRoleMapper.exists(userId, roleId)) {
-                userRoleMapper.insert(userId, roleId);
-            }
+            userRoleMapper.insert(userId, roleId);
         });
     }
 
@@ -67,7 +68,7 @@ public class SysRoleServiceImpl implements SysRoleService {
         if (user == null) {
             throw new RuntimeException("用户不存在");
         }
-        return roleMapper.selectRolesByUserId(userId);
+        return userRoleMapper.selectRolesByUserId(userId);
     }
 
     @Override

@@ -4,7 +4,7 @@ import com.example.demo.service.impl.SysRoleServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
+import com.example.demo.commom.Result;
 
 @RestController
 @RequestMapping("/api/role-user")
@@ -20,11 +20,11 @@ public class RoleUserController {
      * @return 操作结果
      */
     @PostMapping("/assign/{userId}")
-    public ResponseEntity<String> assignRolesToUser(
+    public Result<?> assignRolesToUser(
             @PathVariable Long userId,
             @RequestBody Long[] roleIds) {
         sysRoleService.assignRolesToUser(userId, roleIds);
-        return ResponseEntity.ok("角色分配成功");
+        return Result.success("角色分配成功");
     }
 
     /**
@@ -34,11 +34,11 @@ public class RoleUserController {
      * @return 操作结果
      */
     @DeleteMapping("/remove/{userId}")
-    public ResponseEntity<String> removeRolesFromUser(
+    public Result<?> removeRolesFromUser(
             @PathVariable Long userId,
             @RequestBody Long[] roleIds) {
         sysRoleService.removeRolesFromUser(userId, roleIds);
-        return ResponseEntity.ok("角色移除成功");
+        return Result.success("角色移除成功");
     }
 
     /**
@@ -47,8 +47,8 @@ public class RoleUserController {
      * @return 角色列表
      */
     @GetMapping("/user/{userId}")
-    public ResponseEntity<?> getUserRoles(@PathVariable Long userId) {
-        return ResponseEntity.ok(sysRoleService.getUserRoles(userId));
+    public Result<?> getUserRoles(@PathVariable Long userId) {
+        return Result.success(sysRoleService.getUserRoles(userId));
     }
 
     /**
@@ -57,7 +57,7 @@ public class RoleUserController {
      * @return 用户列表
      */
     @GetMapping("/role/{roleId}")
-    public ResponseEntity<?> getRoleUsers(@PathVariable Long roleId) {
-        return ResponseEntity.ok(sysRoleService.getRoleUsers(roleId));
+    public Result<?> getRoleUsers(@PathVariable Long roleId) {
+        return Result.success(sysRoleService.getRoleUsers(roleId));
     }
 }
