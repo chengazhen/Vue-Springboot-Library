@@ -20,7 +20,7 @@
 http://localhost:9090/swagger-ui/index.html
 
 线上地址
-<!-- http://49.234.181.38:9090/swagger-ui/index.html --> 线上服务已经关闭，后续会重新部署
+http://49.234.181.38:9090/swagger-ui/index.html 线上服务已经关闭，后续会重新部署
 
 ## 主要技术
 
@@ -146,22 +146,8 @@ SpringBoot、Mybatis-Plus、MySQL、Vue3、ElementPlus等
 
 ### 前端
 
-```shell
-library-ui
-├─api			// api接口
-├─assets		// 资源文件	
-│  ├─icon	 	// 图标
-│  ├─img	 	// 图片
-│  └─styles	 	// 样式
-├─components	// 自定义Vue组件
-├─layout		// 页面布局
-├─router		// Vue路由
-├─utils			// 工具函数
-└─views			// 页面
-```
-
-![](images/ui.png)
-
+基于 vben5.0 实现
+[springboot-vben](https://github.com/chengazhen/springboot-vben)
 
 
 ### 后端
