@@ -51,7 +51,8 @@ public class BookController {
             wrappers.like(Book::getIsbn,search1);
         }
         if(StringUtils.isNotBlank(search2)){
-            wrappers.like(Book::getName,search2);
+            // 使用模糊查询,需要在search2前后加上%
+            wrappers.like(Book::getName,"%" + search2 + "%"); 
         }
         if(StringUtils.isNotBlank(search3)){
             wrappers.like(Book::getAuthor,search3);
